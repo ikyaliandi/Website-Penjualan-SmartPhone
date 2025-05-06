@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedMagic</title>
+     <!-- Favicon -->
+     <link rel="icon" type="image/png" href="Image/Logo RED Magic.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #7928CA;
+            --secondary-color: #FF0080;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --accent-color: #00F5FF;
+            --text-color: #333;
+            --light-bg: #f8f9fe;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* Background Animation */
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(-45deg, rgba(121, 40, 202, 0.1), rgba(255, 0, 128, 0.1), rgba(0, 245, 255, 0.1));
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 8px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary-color) !important;
+            font-size: 1.6rem;
+        }
+        
+        .navbar-brand span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            position: relative;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: var(--light-bg);
+            padding: 180px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content h1 {
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content .lead {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+        
+        .hero-img-container {
+            position: relative;
+            overflow: visible;
+        }
+        
+        .hero-img {
+            transform: perspective(800px) rotateY(-8deg);
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(5px 15px 25px rgba(0,0,0,0.25));
+            animation: float 6s ease-in-out infinite;
+            max-width: 85%;
+            border-radius: 30px;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: perspective(800px) rotateY(-8deg) translateY(0);
+            }
+            50% {
+                transform: perspective(800px) rotateY(-4deg) translateY(-15px);
+            }
+            100% {
+                transform: perspective(800px) rotateY(-8deg) translateY(0);
+            }
+        }
+        
+        .hero-img:hover {
+            transform: perspective(800px) rotateY(0deg);
+        }
+        
+        .highlight-circle {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(121, 40, 202, 0.2), rgba(255, 0, 128, 0.2));
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        .circle-1 {
+            bottom: -50px;
+            right: 10%;
+        }
+        
+        .circle-2 {
+            top: 20%;
+            left: -5%;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+        
+        /* Button Styling */
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            box-shadow: 0 6px 18px rgba(121, 40, 202, 0.25);
+            transition: all 0.4s ease;
+            border-radius: 30px;
+            padding: 12px 32px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(121, 40, 202, 0.4);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            width: 100%;
+        }
+        
+        /* Section Title Styling */
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+        
+        .text-center .section-title::after {
+            left: 25%;
+        }
+        
+        /* Features Section */
+        #features {
+            position: relative;
+            background-color: white;
+        }
+        
+        .section-intro {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+        
+        .feature-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            border: none;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: linear-gradient(135deg, rgba(121, 40, 202, 0.05), rgba(255, 0, 128, 0.05));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-card:hover::before {
+            height: 100%;
+        }
+        
+        .feature-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(121, 40, 202, 0.1), rgba(255, 0, 128, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon-wrapper {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(121, 40, 202, 0.2), rgba(255, 0, 128, 0.2));
+        }
+        
+        .feature-icon {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card h5 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover h5 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Specs Section */
+        #specs {
+            background: linear-gradient(135deg, rgba(121, 40, 202, 0.03), rgba(255, 0, 128, 0.03));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .specs-table {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .specs-table th {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 15px 20px;
+            border: none;
+        }
+        
+        .specs-table td {
+            padding: 15px 20px;
+            border: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .specs-table tbody tr:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .specs-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .specs-table tbody tr:hover {
+            background-color: rgba(121, 40, 202, 0.05);
+        }
+        
+        /* Pre-Order Form Section */
+        .form-section {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .form-control, .form-select {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 15px;
+            background-color: rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            box-shadow: none;
+            background-color: white;
+            border-color: rgba(121, 40, 202, 0.3);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer h4, .footer h5 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .footer h4::after, .footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+            color: white;
+            margin-right: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer .text-white {
+            transition: all 0.3s ease;
+        }
+        
+        .footer a.text-white:hover {
+            color: var(--secondary-color) !important;
+            transform: translateX(5px);
+            display: inline-block;
+        }
+        
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        
+        /* Additional Animation */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 991px) {
+            .hero-section {
+                padding: 140px 0 80px;
+            }
+            
+            .hero-img {
+                margin-top: 40px;
+                max-width: 70%;
+            }
+            
+            .feature-card {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 10px 0;
+            }
+            
+            .hero-section {
+                padding: 120px 0 60px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .social-icon {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+   <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="Image/Logo RED Magic.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+            Red<span>Magic</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">Fitur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#specs">Spesifikasi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#pre-order">Pre-Order</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="gradient-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 hero-content reveal">
+                    <h1 class="display-4 fw-bold">RedMagic 10 pro+ – Terobosan Teknologi dalam Genggaman</h1>
+                    <p class="lead">Desain Elegan, Performa Maksimal</p>
+                    <p class="mb-5">Rasakan pengalaman smartphone terdepan dengan perpaduan sempurna antara teknologi canggih dan desain futuristik yang akan mengubah cara Anda berinteraksi dengan dunia digital.</p>
+                    <a href="#pre-order" class="btn btn-primary btn-lg">Pre-Order Sekarang</a>
+                </div>
+                <div class="col-lg-6 text-center hero-img-container reveal">
+                    <div class="highlight-circle circle-1"></div>
+                    <div class="highlight-circle circle-2"></div>
+                    <img src="Image/RedMagic_10_pro+.png" alt="Nova X1 Smartphone" class="img-fluid hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 my-5">
+        <div class="container">
+            <div class="section-intro reveal">
+                <h2 class="section-title text-center">Fitur Unggulan</h2>
+                <p class="text-center mb-5">RedMagic 10 pro+ hadir dengan teknologi mutakhir yang akan mengubah pengalaman digital Anda.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 reveal">
+                    <div class="card feature-card p-4">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-camera feature-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-center">
+                            <h5 class="card-title">Kamera 108MP</h5>
+                            <p class="card-text">Abadikan setiap momen dengan detail menakjubkan melalui sistem kamera quad 108MP berteknologi AI.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 reveal" style="transition-delay: 0.1s;">
+                    <div class="card feature-card p-4">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-display feature-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-center">
+                            <h5 class="card-title">Layar AMOLED 144Hz</h5>
+                            <p class="card-text">Nikmati visual memukau dengan layar AMOLED 6.85" dengan refresh rate 144Hz dan HDR30+.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 reveal" style="transition-delay: 0.2s;">
+                    <div class="card feature-card p-4">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-reception-4 feature-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-center">
+                            <h5 class="card-title">5G Ready</h5>
+                            <p class="card-text">Terhubung dengan kecepatan ultra dengan dukungan jaringan 5G untuk pengalaman online tanpa batas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 reveal" style="transition-delay: 0.3s;">
+                    <div class="card feature-card p-4">
+                        <div class="text-center mb-3">
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-battery-charging feature-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-body p-0 text-center">
+                            <h5 class="card-title">Fast Charging 120W</h5>
+                            <p class="card-text">Dapatkan daya baterai 60% hanya dalam 5 menit dengan teknologi SuperCharge 120W.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section id="specs" class="py-5 my-5">
+        <div class="container">
+            <div class="section-intro reveal">
+                <h2 class="section-title text-center">Spesifikasi Teknis</h2>
+                <p class="text-center mb-5">Performa tak tertandingi dengan spesifikasi terbaik di kelasnya.</p>
+            </div>
+            <div class="table-responsive reveal">
+                <table class="table specs-table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Spesifikasi</th>
+                            <th scope="col">Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Prosesor</strong></td>
+                            <td>Snapdragon 8 Gen 3, Octa-core 3.2GHz</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RAM</strong></td>
+                            <td>16GB LPDDR6X</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Penyimpanan</strong></td>
+                            <td>256GB / 512GB / 1TB UFS 8.0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Layar</strong></td>
+                            <td>6.85" AMOLED, 1440 x 3120 px, 120Hz, HDR10+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kamera Belakang</strong></td>
+                            <td>108MP (utama) + 48MP (ultrawide) + 12MP (telephoto) + 5MP (macro)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kamera Depan</strong></td>
+                            <td>32MP dengan AI Beauty dan Night Mode</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Baterai</strong></td>
+                            <td>5000mAh, Fast Charging 120W, Wireless Charging 45W</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sistem Operasi</strong></td>
+                            <td>Android 15 dengan antarmuka RedMagic OS 10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Order Form Section -->
+    <section id="pre-order" class="py-5 my-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-section p-4 p-md-5 reveal">
+                        <h2 class="section-title text-center">Pre-Order RedMagic 10 pro+ Sekarang</h2>
+                        <p class="text-center mb-5">Jadilah yang pertama memiliki teknologi terbaru dengan penawaran khusus pre-order.</p>
+                        <form id="preOrderForm">
+                            <div class="mb-4">
+                                <label for="nama" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap Anda">
+                                <div class="invalid-feedback">Nama lengkap wajib diisi</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="contoh@email.com">
+                                <div class="invalid-feedback">Email tidak valid</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="form-label">Nomor HP</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="08xxxxxxxxxx">
+                                <div class="invalid-feedback">Nomor HP wajib diisi</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="color" class="form-label">Pilihan Warna</label>
+                                <select class="form-select" id="color">
+                                    <option value="" selected disabled>Pilih warna</option>
+                                    <option value="Cosmic Black">Cosmic Black</option>
+                                    <option value="Stellar Blue">Stellar Blue</option>
+                                    <option value="Aurora Green">Aurora Green</option>
+                                    <option value="Lunar Silver">Lunar Silver</option>
+                                </select>
+                                <div class="invalid-feedback">Pilih warna smartphone</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="notes" class="form-label">Catatan (Opsional)</label>
+                                <textarea class="form-control" id="notes" rows="3" placeholder="Tambahkan catatan khusus jika ada"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">Pesan Sekarang</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5">
+                    <h4>Red<span style="color: var(--secondary-color);">Magic</span></h4>
+                    <p class="mb-4">Hadir untuk memberikan pengalaman teknologi terbaik dan inovatif dalam genggaman Anda.</p>
+                    <div class="mb-3">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <h5>Kontak</h5>
+                    <div class="footer-contact">
+                        <i class="bi bi-geo-alt"></i>
+                        <p class="m-0">Jl. Teknologi No. 88, Jakarta</p>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="bi bi-telephone"></i>
+                        <p class="m-0">(021) 1234-5678</p>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="bi bi-envelope"></i>
+                        <p class="m-0">info@RedMagic.id</p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Navigasi Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#features" class="text-white text-decoration-none">Fitur</a></li>
+                        <li class="mb-2"><a href="#specs" class="text-white text-decoration-none">Spesifikasi</a></li>
+                        <li><a href="#pre-order" class="text-white text-decoration-none">Pre-Order</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light opacity-25">
+            <div class="text-center">
+                <p class="m-0">&copy; 2025 RedMagic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & jQuery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Reveal animations on scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveals[i].getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Form validation
+        const preOrderForm = document.getElementById('preOrderForm');
+        preOrderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const color = document.getElementById('color');
+            
+            let isValid = true;
+            
+            // Validate name
+            if (!nama.value.trim()) {
+                nama.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                nama.classList.remove('is-invalid');
+                nama.classList.add('is-valid');
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+                email.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                email.classList.remove('is-invalid');
+                email.classList.add('is-valid');
+            }
+            
+            // Validate phone
+            if (!phone.value.trim()) {
+                phone.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                phone.classList.remove('is-invalid');
+                phone.classList.add('is-valid');
+            }
+            
+            // Validate color
+            if (!color.value) {
+                color.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                color.classList.remove('is-invalid');
+                color.classList.add('is-valid');
+            }
+            
+            if (isValid) {
+                // Show success message
+                const formContainer = document.querySelector('.form-section');
+                formContainer.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="mb-4">
+                            <i class="bi bi-check-circle-fill" style="font-size: 5rem; color: var(--primary-color);"></i>
+                        </div>
+                        <h2 class="mb-3">Terima Kasih!</h2>
+                        <p class="lead mb-4">Pre-order Anda telah berhasil. Tim kami akan segera menghubungi Anda.</p>
+                        <a href="#home" class="btn btn-primary">Kembali ke Home</a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
